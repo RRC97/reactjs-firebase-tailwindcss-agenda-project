@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+
+import Main from './pages/main'
+import Login from './pages/login'
+import Dashboard from './pages/dashboard'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <BrowserRouter>
+        <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+    </BrowserRouter>,
+    document.getElementById('root')
+)
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+firebase.initializeApp({
+    apiKey: "AIzaSyAhw1qEqqV4Pwawqyj8nIqGO3MB2ImqvHs",
+    authDomain: "training-agendaproject.firebaseapp.com",
+    databaseURL: "https://training-agendaproject.firebaseio.com",
+    projectId: "training-agendaproject",
+    storageBucket: "training-agendaproject.appspot.com",
+    messagingSenderId: "588302643098",
+    appId: "1:588302643098:web:783d2251e3386a762d1423"
+});
